@@ -1,6 +1,8 @@
-import Planet from '../../assets/planet.png'
-import Star from '../../assets/star.png'
-import './index.css'
+import Planet from '../../assets/images/planet.png'
+import Star from '../../assets/images/star.png'
+import './index.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRocket } from '@fortawesome/free-solid-svg-icons';
 
 function Home() {
   return (
@@ -23,10 +25,12 @@ function Home() {
         <p>I’m now looking for a dev position
           to finally kick off my career and learn among professionals.</p>
         <p><span>
-          Here you can find books that I have been reading to gain knowledge. Also you can read my posts under Progress Journal 
-          tab to know mer better as a professional.
+          Here you can find books that I have been reading to gain knowledge. Also you can read my posts under Progress Journal
+          tab to know me better as a professional.
         </span> </p>
-        <h2>Welcome to my space!</h2>
+        <h2>Welcome to my space!
+          <FontAwesomeIcon icon={faRocket} color="#abbacc" />
+        </h2>
       </div>
     </div>
   )

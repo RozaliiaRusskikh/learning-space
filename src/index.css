@@ -3,4 +3,11 @@ body {
   padding: 0;
   color: white;
   background-color: black;
+  font-family: 'Mona Sans Bold';
+
+}
+
+@font-face {
+  font-family: "Mona Sans Bold";
+  src: url('./assets/fonts/Mona Sans/Mona-Sans-Bold.ttf') format("ttf");
 }

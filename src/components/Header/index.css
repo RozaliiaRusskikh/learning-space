@@ -29,7 +29,8 @@ li a:hover {
 }
 
 .logo-image img {
-    width: 150px;
+    width: 85px;
     float: left;
     cursor: pointer;
+    margin: 30px;
 }

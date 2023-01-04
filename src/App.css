@@ -1,18 +1,19 @@
 h1 {
-  font-size: calc(22px + 1vmin);
+  font-size: 40px;
 }
 
 h2 {
-  font-size: calc(20px + 1vmin);
+  font-size: 35px;
 }
 
 h3 {
-  font-size: calc(18px + 1vmin);
+  font-size: 30px;
 }
 
 p {
-  font-size: calc(16px + 1vmin);
-  padding: 3px
+  font-size: 25px;
+  padding: 3px;
+  color: #abbacc;
 }
 
 article ul {

@@ -31,12 +31,12 @@
 }
 
 .stars {
-    background: #000 url(../../assets/stars.png);
+    background: #000 url(../../assets/images/stars.png);
     z-index: 0;
 }
 
 .twinkling {
-    background: transparent url(../../assets/twinkling.png) repeat top center;
+    background: transparent url(../../assets/images/twinkling.png) repeat top center;
     z-index: 1;
     animation: move-twink-back 300s linear infinite;
 }
