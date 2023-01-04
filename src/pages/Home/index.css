@@ -1,0 +1,67 @@
+.circle {
+	position: relative;
+	width: 450px;
+	height: 450px;
+	border-radius: 50%;
+	background-color: #727af2;
+	text-align: center;
+	margin: auto;
+	box-shadow: 0px 0px 90px #939aff;
+}
+
+.my-planet {
+	width: 440px;
+	height: auto;
+	position: relative;
+	top: 50%;
+	transform: translate(0%, -50%);
+}
+
+.star {
+	height: 50px;
+	width: 50px;
+}
+
+.star2 {
+	height: 30px;
+	width: 30px;
+	animation: rotation 3s linear infinite;
+}
+
+
+.starOrbit {
+	height: 590px;
+	width: 590px;
+	position: absolute;
+	z-index: 4;
+	top: 50%;
+	left: 50%;
+	margin-top: -300px;
+	margin-left: -300px;
+	border-radius: 100%;
+	animation: rotation 25s linear infinite;
+}
+
+@keyframes rotation {
+	from {
+		transform: rotate(0);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+h2 {
+	margin-top: 70px;
+	text-align: center;
+}
+
+.description {
+	margin: 43px;
+}
+
+span {
+	color: #939aff;
+	font-weight: 800;
+}

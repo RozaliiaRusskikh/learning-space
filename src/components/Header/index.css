@@ -1,0 +1,35 @@
+.App-header {
+    position: relative;
+    z-index: 3
+}
+
+.App-header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.App-header ul li {
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    padding: 30px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+li a:hover {
+    color: #939aff;
+    text-decoration: underline;
+}
+
+.logo-image img {
+    width: 150px;
+    float: left;
+    cursor: pointer;
+}
