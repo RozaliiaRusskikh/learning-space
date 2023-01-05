@@ -1,9 +1,9 @@
-import PostShow from '../components/PostShow/index'
+import PostLink from '../components/PostLink/index'
 
 function ProgressJournal({ posts }) {
 
     const renderedPosts = posts.map((post) => {
-        return <PostShow key={post.id} post={post} />
+        return <PostLink key={post.id} post={post} />
     });
 
     const showNoPosts = <li>No notes yet!</li>

@@ -1,4 +1,6 @@
 import ProgressJournal from './pages/ProgressJournal';
+import PostPage from './pages/PostPage/index'
+import NoPage from './pages/NoPage'
 import ReadingList from './pages/ReadingList'
 import Layout from './components/Layout/index'
 import Home from './pages/Home'
@@ -28,6 +30,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="reading-list" element={<ReadingList />} />
           <Route path="progress-journal" element={<ProgressJournal posts={posts} />} />
+          <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} />
+          <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

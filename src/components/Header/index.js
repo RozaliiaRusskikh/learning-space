@@ -10,10 +10,10 @@ function Header() {
             </Link>
             <ul>
                 <li>
-                    <NavLink to="/reading-list"> Reading List</NavLink>
+                    <NavLink activeclassname="active" to="/reading-list"> Reading List</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/progress-journal"> Progress Journal</NavLink>
+                    <NavLink activeclassname="active" to="/progress-journal"> Progress Journal</NavLink>
                 </li>
             </ul>
         </div>
