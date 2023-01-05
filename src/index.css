@@ -11,15 +11,3 @@ body {
   font-family: "Mona Sans Bold";
   src: url('./assets/fonts/Mona Sans/Mona-Sans-Bold.ttf') format("ttf");
 }
-
-a {
-  color: white;
-  text-decoration: none;
-  font-size: 25px;
-  font-weight: 700;
-}
-
-a:hover {
-  color: #abbacc;
-  text-decoration: underline;
-}
