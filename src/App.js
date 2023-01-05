@@ -1,7 +1,7 @@
 import ProgressJournal from './pages/ProgressJournal';
 import PostPage from './pages/PostPage/index'
 import NoPage from './pages/NoPage'
-import ReadingList from './pages/ReadingList'
+import ReadingList from './pages/ReadingList/index'
 import Layout from './components/Layout/index'
 import Home from './pages/Home'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -9,6 +9,7 @@ import { useState } from 'react';
 import './App.css'
 
 function App() {
+
   const [posts, setPosts] = useState([
     {
       id: 1,
