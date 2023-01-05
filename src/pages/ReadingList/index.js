@@ -13,7 +13,7 @@ function ReadingList() {
     setBooks(updatedBooks)
   }
   return (
-    <div>
+    <div className="reading-list-container">
       <h1>My Reading List </h1>
       <BookList books={books} />
       <BookCreate onCreate={createBook} />

@@ -1,0 +1,26 @@
+.book-container {
+  display: block;
+  width: 100%;
+}
+
+.book-card {
+  background-color: white;
+  box-shadow: 0 4px 18px 0 #b5b9f5;
+  width: 200px;
+  height: 200px;
+  border-radius: 5px;
+  color: black;
+  margin: 40px;
+  display: block;
+  float: left;
+}
+
+.book-card:hover {
+  background-color: #b5b9f5;
+  box-shadow: 0 8px 16px white;
+}
+
+.book-card h3 {
+  padding: 12px 16px;
+  font-size: 20px;
+}
