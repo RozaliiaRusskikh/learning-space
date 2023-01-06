@@ -7,9 +7,9 @@ function ReadingList() {
 
   const [books, setBooks] = useState([]);
 
-  const createBook = (title) => {
+  const createBook = (title, preview) => {
     const updatedBooks = [...books,
-    { id: Math.round(Math.random() * 9999), title }];
+    { id: Math.round(Math.random() * 9999), title, preview }];
     setBooks(updatedBooks)
   }
   return (
