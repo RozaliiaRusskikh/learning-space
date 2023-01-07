@@ -1,6 +1,6 @@
 .book-container {
   margin: 0 auto;
-  max-width: 85%;
+  max-width: 70%;
 }
 
 .book-card {
@@ -32,5 +32,10 @@
   margin: 1px;
   font-style: italic;
   font-weight: 100;
+  /*
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  */
   overflow-wrap: break-word;
 }
