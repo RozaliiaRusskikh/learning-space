@@ -6,7 +6,7 @@ function ProgressJournal({ posts }) {
         return <PostLink key={post.id} post={post} />
     });
 
-    const showNoPosts = <li>No notes yet!</li>
+    const showNoPosts = <li>SORRY! No notes yet!</li>
 
     return (
         <article>

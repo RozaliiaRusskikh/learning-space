@@ -10,8 +10,9 @@ function ReadingList() {
   const createBook = (title, preview) => {
     const updatedBooks = [...books,
     { id: Math.round(Math.random() * 9999), title, preview }];
-    setBooks(updatedBooks)
+    setBooks(updatedBooks);
   }
+
   return (
     <div className="reading-list-container">
       <h1>My Reading List </h1>

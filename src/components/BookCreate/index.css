@@ -3,8 +3,9 @@
     width: 20%;
     height: 50%;
     position: relative;
-    top: 100px;
-    left: 35%;
+    top: 30px;
+    left: 40%;
+   
 }
 
 .book-create-container h3 {
@@ -38,7 +39,6 @@
     margin: 18px 0;
 }
 
-
 .book-create-container button {
     background-color: #efefef;
     color: black;
@@ -50,6 +50,13 @@
     cursor: pointer;
     text-align: center;
     margin-left: 30px;
+}
+
+.add-button-top {
+  margin-bottom: 40px;
+}
+
+.add-button-bottom {
     position: absolute;
     bottom: 0;
     left: 0;
