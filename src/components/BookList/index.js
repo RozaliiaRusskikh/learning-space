@@ -1,17 +1,18 @@
 import Book from "../Book"
 
-function BookList({ books }) {
+function BookList({ books, onDelete }) {
 
     const renderedBooks = books.map((book) => {
-        return <Book key={book.id} book={book} />
+        return <Book onDelete={onDelete}
+            key={book.id} book={book} />
     })
 
-    const showNoBooks = <h4>SORRY! No books yet!</h4>
+    const showNoBooks = <p>Sorry! No books yet!</p>
 
 
-    return <div>
+    return <>
         {books.length !== 0 ? renderedBooks : showNoBooks}
-    </div>
+    </>
 }
 
 export default BookList;

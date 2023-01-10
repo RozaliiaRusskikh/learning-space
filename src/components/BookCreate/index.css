@@ -1,11 +1,13 @@
 .book-create-container {
+    width: 17%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.book-create-container form {
+    background-color: #727af2;
     padding: 30px;
-    width: 20%;
-    height: 50%;
-    position: relative;
-    top: 30px;
-    left: 40%;
-   
 }
 
 .book-create-container h3 {
@@ -14,14 +16,14 @@
 }
 
 .book-create-container label {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
-    padding: 10px;
+    color: black;
 }
 
 .title {
-    padding: 13px;
-    margin: 11px 0;
+    padding: 10px;
+    margin: 6px 0;
     border: 2px solid #727af2;
     border-radius: 8px;
     width: 90%;
@@ -34,33 +36,34 @@
 .custom-file-upload {
     display: inline-block;
     cursor: pointer;
-    background-color: black;
-    color: white;
-    margin: 18px 0;
+    background-color: white;
+    margin: 0 0 18px 0;
+    border-radius: 8px;
+    padding: 10px;
+    width: 90%;
+}
+
+.two-buttons {
+    display: flex;
+    gap: 20%;
 }
 
 .book-create-container button {
     background-color: #efefef;
     color: black;
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 600;
     padding: 8px 10px;
     border: 2px solid #727af2;
     border-radius: 8px;
     cursor: pointer;
     text-align: center;
-    margin-left: 30px;
 }
 
 .add-button-top {
-  margin-bottom: 40px;
+    margin: 30px;
 }
 
-.add-button-bottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
 
 .book-create-container button:hover {
     background-color: black;

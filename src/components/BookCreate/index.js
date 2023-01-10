@@ -8,6 +8,7 @@ function BookCreate({ onCreate }) {
     const [title, setTitle] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState(null);
+    const [openForm, setIsOpenForm] = useState(false);
     const imageInputRef = useRef();
 
     const handleUpload = (e) => {
@@ -23,8 +24,17 @@ function BookCreate({ onCreate }) {
         onCreate(title, preview);
         setTitle('');
         imageInputRef.current.value = null;
+        setIsOpenForm(false);
+    }
+    const handleOpenForm = () => {
+        setIsOpenForm(true);
+
     }
 
+    const handleCancel = () => {
+        setIsOpenForm(false);
+
+    }
 
     useEffect(() => {
         if (!selectedFile) {
@@ -39,21 +49,28 @@ function BookCreate({ onCreate }) {
         return () => URL.revokeObjectURL(objectUrl)
     }, [selectedFile])
 
+    if (openForm) {
+
+    }
+
     return (
         <div className='book-create-container'>
-            <button className='add-button-top' onClick={() => { }}>Add a book
-                <FontAwesomeIcon icon={faAdd} color="#727af2" style={{ marginLeft: '.3rem' }} />
-            </button>
-            <form onSubmit={handleSubmit}>
-                <label>Title</label>
-                <input className='title' type='text' value={title} onChange={handleChange} required />
-                <label className='custom-file-upload'>
-                    <input className='file' type="file" name="filename" accept="image/*" required
-                        ref={imageInputRef} onChange={handleUpload}></input>
-                    Choose Image  <FontAwesomeIcon icon={faUpload} color="#727af2" />
-                </label>
-                <button class='add-button-bottom'>Add</button>
-            </form>
+            {openForm ?
+                <form onSubmit={handleSubmit}>
+                    <label>Title</label>
+                    <input className='title' type='text' value={title} onChange={handleChange} required />
+                    <label className='custom-file-upload'>
+                        <input className='file' type="file" name="filename" accept="image/*" required
+                            ref={imageInputRef} onChange={handleUpload}></input>
+                        Choose Image  <FontAwesomeIcon icon={faUpload} color="#727af2" />
+                    </label>
+                    <div className='two-buttons'>
+                        <button>Add</button>
+                        <button type="button" onClick={handleCancel}>Cancel</button>
+                    </div>
+                </form> : <button className='add-button-top' onClick={handleOpenForm}>Add a book
+                    <FontAwesomeIcon icon={faAdd} color="#727af2" style={{ marginLeft: '.3rem' }} />
+                </button>}
         </div>
     )
 }

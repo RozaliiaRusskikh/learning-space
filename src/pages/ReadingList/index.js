@@ -7,6 +7,14 @@ function ReadingList() {
 
   const [books, setBooks] = useState([]);
 
+  const deleteBookById = (id) => {
+    const updatedBooks = books.filter((book) => {
+      return book.id !== id;
+    })
+
+    setBooks(updatedBooks);
+  }
+
   const createBook = (title, preview) => {
     const updatedBooks = [...books,
     { id: Math.round(Math.random() * 9999), title, preview }];
@@ -16,7 +24,7 @@ function ReadingList() {
   return (
     <div className="reading-list-container">
       <h1>My Reading List </h1>
-      <BookList books={books} />
+      <BookList books={books} onDelete={deleteBookById} />
       <BookCreate onCreate={createBook} />
     </div>
   )

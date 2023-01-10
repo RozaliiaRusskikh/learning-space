@@ -39,3 +39,7 @@
   */
   overflow-wrap: break-word;
 }
+
+.two-icons {
+  text-align: end;
+}
