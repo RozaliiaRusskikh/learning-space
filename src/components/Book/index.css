@@ -7,7 +7,7 @@
   background-color: white;
   box-shadow: 0 4px 15px 0 #b5b9f5;
   width: 230px;
-  height: 370px;
+  height: 385px;
   border-radius: 5px;
   color: black;
   margin: 40px;
@@ -42,4 +42,5 @@
 
 .two-icons {
   text-align: end;
+  cursor: pointer;
 }

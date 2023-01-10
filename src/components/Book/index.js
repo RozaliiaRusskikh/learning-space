@@ -1,16 +1,26 @@
 import './index.css'
+import BookEdit from "../BookEdit"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
-function Book({ book, onDelete }) {
+function Book({ book, onDelete, onEdit }) {
+
+    const [showEdit, setShowEdit] = useState(false);
 
     const handleDelete = () => {
         onDelete(book.id);
     }
 
     const handleEdit = () => {
-        console.log('Hi');
+        setShowEdit(!showEdit);
+    }
+
+    const handleSubmit = (id, newTitle) => {
+        setShowEdit(false);
+        onEdit(id, newTitle)
     }
 
     const iconStyle = {
@@ -18,14 +28,23 @@ function Book({ book, onDelete }) {
         color: "#727af2"
     };
 
+    let content = <h3>{book.title}</h3>;
+
+    let icon = faEdit;
+
+    if (showEdit) {
+        content = <BookEdit onSubmit={handleSubmit} book={book} />;
+        icon = faClose;
+    }
+
     return (
         <div className="book-container">
             <div className='book-card'>
                 <img src={book.preview} alt="book preview"></img>
-                <h3>{book.title}</h3>
+                <div>{content}</div>
                 <div className='two-icons'>
-                    <FontAwesomeIcon className='edit' onClick={handleEdit} icon={faEdit} style={iconStyle} />
-                    <FontAwesomeIcon className='delete' onClick={handleDelete} icon={faTrash} style={iconStyle}  />
+                    <FontAwesomeIcon onClick={handleEdit} icon={icon} style={iconStyle} />
+                    <FontAwesomeIcon onClick={handleDelete} icon={faTrash} style={iconStyle} />
                 </div>
             </div>
         </div>
