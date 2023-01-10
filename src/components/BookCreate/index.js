@@ -33,7 +33,8 @@ function BookCreate({ onCreate }) {
 
     const handleCancel = () => {
         setIsOpenForm(false);
-
+        setTitle('');
+        imageInputRef.current.value = null;
     }
 
     useEffect(() => {
