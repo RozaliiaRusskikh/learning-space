@@ -1,5 +1,6 @@
 import Planet from '../../assets/images/planet.png'
 import Star from '../../assets/images/star.png'
+import Book from '../../assets/images/book.png'
 import './index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRocket } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +11,7 @@ function Home() {
       <div className="circle">
         <img className='my-planet' src={Planet} alt="my-planet" />
         <div className='starOrbit'>
-          <img className='star' src={Star} alt='star' />
+          <img className='star' src={Book} alt='star' />
           <img className='star2' src={Star} alt='star2' />
         </div>
       </div>

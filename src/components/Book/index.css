@@ -32,12 +32,12 @@
   margin: 1px;
   font-style: italic;
   font-weight: 100;
-  /*
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  */
+  /*
   overflow-wrap: break-word;
+  */
 }
 
 .two-icons {
