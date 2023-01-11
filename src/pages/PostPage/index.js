@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import PostFormPage from "../PostFormPage/index"
 import NoPage from "../NoPage"
 
 function PostRelatedPage({ posts }) {
@@ -16,14 +15,10 @@ function PostRelatedPage({ posts }) {
             </article>
         )
     }
-
-    else if (postSlug === 'new') {
-        return <PostFormPage />
-    }
-
     else {
         return <NoPage />
     }
+
 }
 
 export default PostRelatedPage;
