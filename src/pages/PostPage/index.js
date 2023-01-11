@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import NoPage from "../NoPage"
 
-function PostRelatedPage({ posts }) {
+function PostPage({ posts }) {
 
     const { postSlug } = useParams();
     const post = posts.find((post) =>
@@ -21,4 +21,4 @@ function PostRelatedPage({ posts }) {
 
 }
 
-export default PostRelatedPage;
+export default PostPage;
