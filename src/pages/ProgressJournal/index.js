@@ -1,4 +1,3 @@
-import PostLink from '../../components/PostLink/index';
 import PostList from '../../components/PostList'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

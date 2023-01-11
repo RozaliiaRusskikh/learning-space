@@ -9,9 +9,9 @@ function PostList({ posts }) {
     const showNoPosts = <p>Sorry! No posts yet!</p>
 
     return (
-        <ul>
+        <div>
             {posts.length !== 0 ? renderedPosts : showNoPosts}
-        </ul>
+        </div>
     )
 }
 

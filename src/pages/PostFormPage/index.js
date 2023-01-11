@@ -40,10 +40,10 @@ const PostFormPage = ({ onCreate }) => {
                     Title:
                 </label>
                 <br />
-                <input id="form-title" value={postTitle} onChange={handleTitleChange}></input>
+                <input value={postTitle} onChange={handleTitleChange}></input>
             </p>
             <p>
-                <label htmlFor="form-content">
+                <label>
                     Content:
                 </label>
             </p>
