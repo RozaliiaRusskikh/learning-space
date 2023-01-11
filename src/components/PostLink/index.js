@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import './index.css'
 
-function PostShow({ post }) {
+function PostLink({ post }) {
     return (
         <h3>
             <Link to={`/progress-journal/${post.slug}`}>{post.title}</Link>
@@ -9,4 +9,4 @@ function PostShow({ post }) {
     )
 }
 
-export default PostShow; 
+export default PostLink; 

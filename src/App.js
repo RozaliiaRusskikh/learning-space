@@ -1,12 +1,12 @@
 import ProgressJournal from './pages/ProgressJournal';
-import PostPage from './pages/PostPage/index'
-import NoPage from './pages/NoPage'
-import ReadingList from './pages/ReadingList/index'
-import Layout from './components/Layout/index'
-import Home from './pages/Home'
+import PostRelatedPage from './pages/PostRelatedPage/index';
+import NoPage from './pages/NoPage';
+import ReadingList from './pages/ReadingList/index';
+import Layout from './components/Layout/index';
+import Home from './pages/Home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from 'react';
-import './App.css'
+import './App.css';
 
 function App() {
 
@@ -24,6 +24,7 @@ function App() {
       slug: "hello-project"
     },
   ])
+
   return (
     <BrowserRouter>
       <Routes>
@@ -31,8 +32,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="reading-list" element={<ReadingList />} />
           <Route path="progress-journal" element={<ProgressJournal posts={posts} />} />
-          <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} />
           <Route path="*" element={<NoPage />} />
+          <Route path="progress-journal/:postSlug" element={<PostRelatedPage posts={posts} />} />
         </Route>
       </Routes>
     </BrowserRouter>
