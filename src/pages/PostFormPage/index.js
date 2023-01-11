@@ -37,14 +37,14 @@ const PostFormPage = ({ onCreate }) => {
             <h1>Add a new post:</h1>
             <p>
                 <label htmlFor="form-title">
-                    Title:
+                    Title
                 </label>
                 <br />
                 <input value={postTitle} onChange={handleTitleChange}></input>
             </p>
             <p>
                 <label>
-                    Content:
+                    Content
                 </label>
             </p>
             <ReactQuill theme="snow" onChange={handleContentChange}></ReactQuill>
