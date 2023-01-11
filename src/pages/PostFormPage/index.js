@@ -3,8 +3,8 @@ import { Quill } from "react-quill"
 
 const PostFormPage = (props) => {
     return (
-        <form>
-            <h1>Add a new post</h1>
+        <form className="post-form-container">
+            <h1>Add a new post:</h1>
             <p>Title</p>
             <p>Editor</p>
             <p>

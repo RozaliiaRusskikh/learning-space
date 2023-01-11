@@ -6,8 +6,10 @@
 }
 
 .book-create-container form {
-    background-color: #727af2;
+    background-color: #939aff;
     padding: 30px;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0px 0px 15px #abbacc;
 }
 
 .book-create-container h3 {
