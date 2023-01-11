@@ -1,12 +1,12 @@
 .post-form-container {
-    background-color: #939aff;
+    background-color: #dee6f1;
     padding: 20px;
     border-radius: 8px;
     width: 60%;
     position: relative;
     margin: 0 auto;
     color: black;
-    box-shadow: 0px 0px 20px #abbacc;
+    box-shadow: 0px 0px 20px #727af2;
 }
 
 .post-form-container p {
@@ -28,7 +28,7 @@
 .post-form-container input{
     padding: 10px;
     margin: 6px 0;
-    border: 2px solid #727af2;
+    border: 1px solid #727af2;
     border-radius: 8px;
     width: 97.5%;
 }

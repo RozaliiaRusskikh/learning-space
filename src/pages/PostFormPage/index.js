@@ -2,10 +2,12 @@ import "./index.css"
 import { useState } from "react";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
+import { Navigate } from "react-router-dom";
 
-const PostFormPage = (props) => {
+const PostFormPage = ({ onCreate }) => {
     const [postTitle, setPostTitle] = useState("");
     const [postContent, setPostContent] = useState("");
+    const [saved, setSaved] = useState(false);
 
     const handleTitleChange = (event) => {
         setPostTitle(event.target.value);
@@ -18,15 +20,16 @@ const PostFormPage = (props) => {
     const handlePostForm = (event) => {
         event.preventDefault();
         if (postTitle && postContent) {
-            const post = {
-                title: postTitle,
-                content: postContent,
-            }
-            console.log(post);
+            onCreate(postTitle, postContent);
+            setSaved(true);
         }
         else {
             alert("Title and content are required.")
         }
+    }
+
+    if (saved) {
+        return <Navigate to='/progress-journal' />
     }
 
     return (

@@ -12,20 +12,21 @@ import { useState } from 'react';
 
 function App() {
 
-  const [posts, setPosts] = useState([
+  const [posts, setPosts] = useState([]);
+
+  const createPost = (postTitle, postContent) => {
+    const postSlug = postTitle.toLowerCase().split(" ").join("-");
+
+    const updatedPosts = [...posts,
     {
-      id: 1,
-      title: "Hello React",
-      content: "Lorem",
-      slug: "hello-react"
-    },
-    {
-      id: 2,
-      title: "Hello Project",
-      content: "Lorem ipsum",
-      slug: "hello-project"
-    },
-  ])
+      id: Math.round(Math.random() * 9999),
+      title: postTitle,
+      content: postContent,
+      slug: postSlug
+    }];
+    setPosts(updatedPosts);
+  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -34,7 +35,7 @@ function App() {
           <Route path="reading-list" element={<ReadingList />} />
           <Route path="progress-journal" element={<ProgressJournal posts={posts} />} />
           <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} />
-          <Route path="progress-journal/new" element={<PostFormPage />} />
+          <Route path="progress-journal/new" element={<PostFormPage onCreate={createPost} />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
