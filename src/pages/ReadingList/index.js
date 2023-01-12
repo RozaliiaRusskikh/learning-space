@@ -1,12 +1,11 @@
-import { useState } from "react";
 import BookCreate from "../../components/BookCreate/index";
 import BookList from '../../components/BookList';
 import './index.css';
-import { useStorageState } from "react-storage-hooks";
+import { useState } from "react";
 
 function ReadingList() {
 
-  const [books, setBooks] = useStorageState(localStorage, `state-books`, []);;
+  const [books, setBooks] = useState([]);;
 
   const editBookById = (id, newTitle) => {
     const updatedBooks = books.map((book) => {
@@ -35,7 +34,7 @@ function ReadingList() {
 
   return (
     <div className="reading-list-container">
-      <h1>My Reading List </h1>
+      <h1>My Learning Library </h1>
       <BookList onEdit={editBookById} books={books} onDelete={deleteBookById} />
       <BookCreate onCreate={createBook} />
     </div>

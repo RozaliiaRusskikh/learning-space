@@ -39,7 +39,6 @@ function BookCreate({ onCreate }) {
 
     useEffect(() => {
         if (!selectedFile) {
-            setPreview(null)
             return
         }
 
@@ -49,10 +48,6 @@ function BookCreate({ onCreate }) {
         // free memory when ever this component is unmounted
         return () => URL.revokeObjectURL(objectUrl)
     }, [selectedFile])
-
-    if (openForm) {
-
-    }
 
     return (
         <div className='book-create-container'>

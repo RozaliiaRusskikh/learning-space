@@ -8,12 +8,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import PostFormPage from './pages/PostFormPage';
 import { useState } from 'react';
-import { useStorageState } from 'react-storage-hooks';
 
 
 function App() {
 
-  const [posts, setPosts] = useStorageState(localStorage, `state-posts`, []);
+  const [posts, setPosts] = useState([]);
 
   const [message, setMessage] = useState(null);
 
