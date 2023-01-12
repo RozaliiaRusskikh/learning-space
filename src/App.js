@@ -9,13 +9,27 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import PostFormPage from './pages/PostFormPage';
 import { useState } from 'react';
+import firebase from './firebase';
 
 
 function App() {
 
   const [posts, setPosts] = useState([]);
-
   const [message, setMessage] = useState(null);
+  const [user, setUser] = useState({});
+
+  const onLogin = (email, password) => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((response) => {
+        setUser({
+          email: response.user['email'],
+          isAuthenticated: true
+        });
+      })
+      .catch(error => console.error(error))
+  }
 
   const setFlashMessage = (message) => {
     setMessage(message);
@@ -56,7 +70,7 @@ function App() {
           <Route path="progress-journal" element={<ProgressJournal onDelete={deletePost} message={message} posts={posts} />} />
           <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} />
           <Route path="progress-journal/new" element={<PostFormPage onCreate={createPost} />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login onLogin={onLogin} />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

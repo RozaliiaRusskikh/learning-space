@@ -1,13 +1,15 @@
 import './index.css';
 import { useState } from 'react';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const isEnabled = email.length > 0 && password.length > 0;
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        onLogin(email, password);
+        
     }
 
     const handleEmailChange = (event) => {
@@ -33,7 +35,7 @@ const Login = () => {
             </p>
             <p>
                 <label htmlFor="password">
-                    Content
+                    Password
                 </label>
                 <input value={password} type="password" onChange={handlePasswordChange}></input>
             </p>

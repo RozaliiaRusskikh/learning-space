@@ -9,11 +9,15 @@
     padding: 0;
 }
 
-.App-header ul li {
+.App-header li {
     display: inline-block;
     text-align: center;
     vertical-align: top;
     padding: 30px;
+}
+
+.App-header li:last-child {
+    float:right;
 }
 
 .App-header a {

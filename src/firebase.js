@@ -1,8 +1,10 @@
-import * as firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firebase-database";
+// Import the functions you need from the SDKs you need
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
-const config = {
+
+const firebaseConfig = {
     apiKey: "AIzaSyDMk9o7e6UX0i16rlO7tm_nK-TS_B5BOvE",
     authDomain: "react-blog-demo-a519d.firebaseapp.com",
     projectId: "react-blog-demo-a519d",
@@ -11,6 +13,8 @@ const config = {
     appId: "1:963832125001:web:fcb36a168cbd453a705198",
     measurementId: "G-HWNGBY3ZMH"
 };
-firebase.initializeApp(config);
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 export default firebase;

@@ -1,6 +1,8 @@
 import Logo from '../../assets/images/logo.png'
 import { Link, NavLink } from 'react-router-dom';
-import './index.css'
+import './index.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignIn } from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
     return (
@@ -14,6 +16,9 @@ function Header() {
                 </li>
                 <li>
                     <NavLink activeclassname="active" to="/progress-journal"> Progress Journal</NavLink>
+                </li>
+                <li>
+                    <NavLink activeclassname="active" to="/login"> <FontAwesomeIcon icon={faSignIn} /></NavLink>
                 </li>
             </ul>
         </div>
