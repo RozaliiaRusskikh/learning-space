@@ -10,6 +10,7 @@ import './App.css';
 import PostFormPage from './pages/PostFormPage';
 import { useState } from 'react';
 import firebase from './firebase';
+import UserContext from './context/userContext'
 
 
 function App() {
@@ -63,17 +64,19 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="reading-list" element={<ReadingList />} />
-          <Route path="progress-journal" element={<ProgressJournal onDelete={deletePost} message={message} posts={posts} />} />
-          <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} />
-          <Route path="progress-journal/new" element={<PostFormPage onCreate={createPost} />} />
-          <Route path="/login" element={<Login onLogin={onLogin} />} />
-          <Route path="*" element={<NoPage />} />
-        </Route>
-      </Routes>
+      <UserContext.Provider value={{ user, onLogin }}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="reading-list" element={<ReadingList />} />
+            <Route path="progress-journal" element={<ProgressJournal onDelete={deletePost} message={message} posts={posts} />} />
+            <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} />
+            <Route path="progress-journal/new" element={<PostFormPage onCreate={createPost} />} />
+            <Route path="/login" element={<Login onLogin={onLogin} />} />
+            <Route path="*" element={<NoPage />} />
+          </Route>
+        </Routes>
+      </UserContext.Provider>
     </BrowserRouter>
   );
 }
