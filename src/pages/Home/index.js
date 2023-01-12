@@ -1,8 +1,6 @@
 import Planet from '../../assets/images/planet.png'
 import Star from '../../assets/images/star.png'
 import './index.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRocket } from '@fortawesome/free-solid-svg-icons';
 
 function Home() {
   return (
@@ -30,7 +28,6 @@ function Home() {
             tab to know me better as a professional.
           </span> </p>
           <h2>Welcome to my space!
-            <FontAwesomeIcon icon={faRocket} color="#abbacc" />
           </h2>
         </div>
       </div>

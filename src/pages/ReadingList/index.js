@@ -1,7 +1,7 @@
 import { useState } from "react";
-import BookCreate from "../../components/BookCreate/index"
-import BookList from '../../components/BookList'
-import './index.css'
+import BookCreate from "../../components/BookCreate/index";
+import BookList from '../../components/BookList';
+import './index.css';
 
 function ReadingList() {
 

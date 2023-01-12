@@ -14,6 +14,15 @@ function App() {
 
   const [posts, setPosts] = useState([]);
 
+  const [message, setMessage] = useState(null);
+
+  const setFlashMessage = (message) => {
+    setMessage(message);
+    setTimeout(() => {
+      setMessage(null)
+    }, 1600)
+  }
+
   const createPost = (postTitle, postContent) => {
     const postSlug = postTitle.toLowerCase().split(" ").join("-");
 
@@ -25,6 +34,7 @@ function App() {
       slug: postSlug
     }];
     setPosts(updatedPosts);
+    setFlashMessage('saved');
   }
 
   return (
@@ -33,7 +43,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="reading-list" element={<ReadingList />} />
-          <Route path="progress-journal" element={<ProgressJournal posts={posts} />} />
+          <Route path="progress-journal" element={<ProgressJournal message={message} posts={posts} />} />
           <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} />
           <Route path="progress-journal/new" element={<PostFormPage onCreate={createPost} />} />
           <Route path="*" element={<NoPage />} />
