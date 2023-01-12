@@ -5,7 +5,7 @@ const Message = ({ message }) => {
     const messages = {
         saved: "Post has been saved!",
         updated: "Post has been updated!",
-        deleted: "Post has been deleted!;"
+        deleted: "Post has been deleted!"
     }
 
     return (

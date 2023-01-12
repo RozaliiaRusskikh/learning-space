@@ -1,9 +1,9 @@
 import PostLink from "./PostLink";
 
-function PostList({ posts }) {
+function PostList({ posts, onDelete }) {
 
     const renderedPosts = posts.map((post) => {
-        return <PostLink key={post.id} post={post} />
+        return <PostLink onDelete={onDelete} key={post.id} post={post} />
     });
 
     const showNoPosts = <p>Sorry! No posts yet!</p>

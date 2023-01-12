@@ -42,3 +42,8 @@
     color: #FF3F69;
     font-size: 20px;
 }
+
+.post-form-container button:hover {
+    background-color: black;
+    color: white;
+}

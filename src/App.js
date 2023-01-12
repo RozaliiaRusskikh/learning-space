@@ -37,13 +37,22 @@ function App() {
     setFlashMessage('saved');
   }
 
+  const deletePost = (id) => {
+    if (window.confirm('Delete this post?')) {
+      const updatedPosts = posts.filter((post) =>
+        post.id !== id);
+      setPosts(updatedPosts);
+      setFlashMessage('deleted')
+    }
+  }
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="reading-list" element={<ReadingList />} />
-          <Route path="progress-journal" element={<ProgressJournal message={message} posts={posts} />} />
+          <Route path="progress-journal" element={<ProgressJournal onDelete={deletePost} message={message} posts={posts} />} />
           <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} />
           <Route path="progress-journal/new" element={<PostFormPage onCreate={createPost} />} />
           <Route path="*" element={<NoPage />} />
