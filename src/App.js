@@ -1,5 +1,6 @@
 import ProgressJournal from './pages/ProgressJournal';
 import PostPage from './pages/PostPage/index';
+import Login from './pages/Login/index'
 import NoPage from './pages/NoPage';
 import ReadingList from './pages/ReadingList/index';
 import Layout from './components/Layout/index';
@@ -55,6 +56,7 @@ function App() {
           <Route path="progress-journal" element={<ProgressJournal onDelete={deletePost} message={message} posts={posts} />} />
           <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} />
           <Route path="progress-journal/new" element={<PostFormPage onCreate={createPost} />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
