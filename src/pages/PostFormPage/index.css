@@ -25,6 +25,10 @@
     text-align: center;
 }
 
+.cancel {
+    margin-left: 20px;
+}
+
 .post-form-container input {
     padding: 10px;
     margin: 6px 0;
@@ -35,6 +39,6 @@
 
 .post-form-container label::after {
     content: ' *';
-    color: red;
+    color: #FF3F69;
     font-size: 20px;
-  }
+}

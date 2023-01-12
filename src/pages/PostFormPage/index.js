@@ -13,6 +13,10 @@ const PostFormPage = ({ onCreate }) => {
         setPostTitle(event.target.value);
     }
 
+    const handleCancel = () => {
+        window.history.back();
+    }
+
     const handleContentChange = (postContent, delta, source, editor) => {
         setPostContent(editor.getContents());
     }
@@ -50,6 +54,7 @@ const PostFormPage = ({ onCreate }) => {
             <ReactQuill theme="snow" onChange={handleContentChange}></ReactQuill>
             <p>
                 <button type='submit'>Save</button>
+                <button type='button' className="cancel" onClick={handleCancel}>Cancel</button>
             </p>
 
         </form>
