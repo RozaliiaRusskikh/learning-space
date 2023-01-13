@@ -1,7 +1,10 @@
 import './index.css';
 import { useState } from 'react';
+import UserContext from '../../context/userContext';
+import { useContext } from 'react';
 
-const Login = ({ onLogin }) => {
+const Login = () => {
+    const { onLogin } = useContext(UserContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const isEnabled = email.length > 0 && password.length > 0;
@@ -9,7 +12,7 @@ const Login = ({ onLogin }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         onLogin(email, password);
-        
+
     }
 
     const handleEmailChange = (event) => {

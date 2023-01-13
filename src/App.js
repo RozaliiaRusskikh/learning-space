@@ -28,6 +28,7 @@ function App() {
           email: response.user['email'],
           isAuthenticated: true
         });
+        window.history.back();
       })
       .catch(error => console.error(error))
   }
@@ -72,7 +73,7 @@ function App() {
             <Route path="progress-journal" element={<ProgressJournal onDelete={deletePost} message={message} posts={posts} />} />
             <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} />
             <Route path="progress-journal/new" element={<PostFormPage onCreate={createPost} />} />
-            <Route path="/login" element={<Login onLogin={onLogin} />} />
+            <Route path="/login" element={<Login />} />
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>

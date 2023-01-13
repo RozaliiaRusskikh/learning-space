@@ -5,10 +5,13 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import UserContext from '../../context/userContext';
+import { useContext } from 'react';
 
 function Book({ book, onDelete, onEdit }) {
 
     const [showEdit, setShowEdit] = useState(false);
+    const { user } = useContext(UserContext);
 
     const handleDelete = () => {
         onDelete(book.id);
@@ -42,10 +45,12 @@ function Book({ book, onDelete, onEdit }) {
             <div className='book-card'>
                 <img src={book.preview} alt="book preview"></img>
                 <div>{content}</div>
-                <div className='two-icons'>
-                    <FontAwesomeIcon onClick={handleEdit} icon={icon} style={iconStyle} />
-                    <FontAwesomeIcon onClick={handleDelete} icon={faTrash} style={iconStyle} />
-                </div>
+                {user.isAuthenticated &&
+                    <div className='two-icons'>
+                        <FontAwesomeIcon onClick={handleEdit} icon={icon} style={iconStyle} />
+                        <FontAwesomeIcon onClick={handleDelete} icon={faTrash} style={iconStyle} />
+                    </div>
+                }
             </div>
         </div>
     )
