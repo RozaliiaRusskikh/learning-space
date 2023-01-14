@@ -2,12 +2,19 @@ import Logo from '../../assets/images/logo.png'
 import { Link, NavLink } from 'react-router-dom';
 import './index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignIn } from '@fortawesome/free-solid-svg-icons';
+import { faRocket } from '@fortawesome/free-solid-svg-icons';
+import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 import UserContext from '../../context/userContext';
 import { useContext } from 'react';
 
 function Header() {
-    const { user } = useContext(UserContext);
+    const { user, onLogout } = useContext(UserContext);
+
+    const handleLogoutClick = (event) => {
+        event.preventDefault();
+        onLogout()
+    }
+
     return (
         <div className="App-header">
             <Link className='logo-image' to='/'>
@@ -20,9 +27,14 @@ function Header() {
                 <li>
                     <NavLink activeclassname="active" to="/progress-journal"> Progress Journal</NavLink>
                 </li>
-                {!user.isAuthenticated &&
+                {user.isAuthenticated
+                    ?
+                    <li className='logout'>
+                        <FontAwesomeIcon onClick={handleLogoutClick} icon={faSignOut} />
+                    </li>
+                    :
                     <li className='login'>
-                        <NavLink activeclassname="active" to="/login"> <FontAwesomeIcon icon={faSignIn} /></NavLink>
+                        <NavLink activeclassname="active" to="/login"> <FontAwesomeIcon icon={faRocket} /></NavLink>
                     </li>
                 }
             </ul>

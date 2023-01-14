@@ -38,6 +38,16 @@ function App() {
       );
   }
 
+  const onLogout = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        setUser({ isAuthenticated: false });
+      })
+      .catch((error) => console.error(error))
+  }
+
   const setFlashMessage = (message) => {
     setMessage(message);
     setTimeout(() => {
@@ -70,14 +80,14 @@ function App() {
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ user, onLogin }}>
+      <UserContext.Provider value={{ user, onLogin, onLogout }}>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="reading-list" element={<ReadingList />} />
             <Route path="progress-journal" element={<ProgressJournal onDelete={deletePost} message={message} posts={posts} />} />
             <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} /> :
-            <Route path="progress-journal/new" element={user.isAuthenticated ? <PostFormPage onCreate={createPost} /> :  <Navigate to='/login' />} />
+            <Route path="progress-journal/new" element={user.isAuthenticated ? <PostFormPage onCreate={createPost} /> : <Navigate to='/login' />} />
             <Route path="/login" element={!user.isAuthenticated ? <Login error={error} /> : <Navigate to='/' />} />
             <Route path="*" element={<NoPage />} />
           </Route>

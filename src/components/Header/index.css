@@ -17,7 +17,17 @@
 }
 
 .login {
-    float:right;
+    float: right;
+}
+
+.logout {
+    float: right;
+    cursor: pointer;
+}
+
+.logout:hover {
+    color: #abbacc;
+    text-decoration: underline;
 }
 
 .App-header a {
