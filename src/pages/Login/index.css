@@ -59,3 +59,8 @@ button[type="submit"]:hover:disabled {
     background-color: black;
     color: white;
 }
+
+.error {
+    color: #FF3F69;
+    text-align: center;
+}

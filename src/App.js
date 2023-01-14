@@ -10,7 +10,7 @@ import './App.css';
 import PostFormPage from './pages/PostFormPage';
 import { useState } from 'react';
 import firebase from './firebase';
-import UserContext from './context/userContext'
+import UserContext from './context/userContext';
 
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [message, setMessage] = useState(null);
   const [user, setUser] = useState({});
+  const [error, setError] = useState(null);
 
   const onLogin = (email, password) => {
     firebase
@@ -28,9 +29,14 @@ function App() {
           email: response.user['email'],
           isAuthenticated: true
         });
+        setError(false);
         window.history.back();
       })
-      .catch(error => console.error(error))
+      .catch(error => {
+        setError(true);
+        console.error(error)
+      }
+      );
   }
 
   const setFlashMessage = (message) => {
@@ -71,9 +77,9 @@ function App() {
             <Route index element={<Home />} />
             <Route path="reading-list" element={<ReadingList />} />
             <Route path="progress-journal" element={<ProgressJournal onDelete={deletePost} message={message} posts={posts} />} />
-            <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} />
+            <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} /> :
             <Route path="progress-journal/new" element={<PostFormPage onCreate={createPost} />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login error={error} />} />
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>
@@ -83,3 +89,5 @@ function App() {
 }
 
 export default App;
+
+

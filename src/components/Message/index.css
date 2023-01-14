@@ -19,3 +19,7 @@
 .app-message-deleted {
   color: #FF3F69;
 }
+
+app-message-notLoggedIn {
+  color: #FF3F69;
+}
