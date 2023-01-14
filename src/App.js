@@ -5,7 +5,7 @@ import NoPage from './pages/NoPage';
 import ReadingList from './pages/ReadingList/index';
 import Layout from './components/Layout/index';
 import Home from './pages/Home';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import './App.css';
 import PostFormPage from './pages/PostFormPage';
 import { useState } from 'react';
@@ -30,7 +30,6 @@ function App() {
           isAuthenticated: true
         });
         setError(false);
-        window.history.back();
       })
       .catch(error => {
         setError(true);
@@ -78,8 +77,8 @@ function App() {
             <Route path="reading-list" element={<ReadingList />} />
             <Route path="progress-journal" element={<ProgressJournal onDelete={deletePost} message={message} posts={posts} />} />
             <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} /> :
-            <Route path="progress-journal/new" element={<PostFormPage onCreate={createPost} />} />
-            <Route path="/login" element={<Login error={error} />} />
+            <Route path="progress-journal/new" element={user.isAuthenticated ? <PostFormPage onCreate={createPost} /> :  <Navigate to='/login' />} />
+            <Route path="/login" element={!user.isAuthenticated ? <Login error={error} /> : <Navigate to='/' />} />
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>
