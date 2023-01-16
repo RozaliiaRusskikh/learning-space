@@ -20,6 +20,8 @@ function App() {
   const [user, setUser] = useState({});
   const [error, setError] = useState(null);
 
+  //const booksRef = firebase.database().ref('books');
+
   const onLogin = (email, password) => {
     firebase
       .auth()

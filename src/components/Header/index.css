@@ -18,6 +18,7 @@
 
 .login {
     float: right;
+    cursor: pointer;
 }
 
 .logout {
@@ -26,6 +27,11 @@
 }
 
 .logout:hover {
+    color: #abbacc;
+    text-decoration: underline;
+}
+
+.login:hover {
     color: #abbacc;
     text-decoration: underline;
 }
