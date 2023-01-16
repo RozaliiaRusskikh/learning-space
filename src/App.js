@@ -11,7 +11,8 @@ import PostFormPage from './pages/PostFormPage';
 import { useState } from 'react';
 import firebase from './firebase';
 import UserContext from './context/userContext';
-
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getDatabase, ref, push, set } from 'firebase/database';
 
 function App() {
 
@@ -20,12 +21,12 @@ function App() {
   const [user, setUser] = useState({});
   const [error, setError] = useState(null);
 
-  //const booksRef = firebase.database().ref('books');
+  const auth = getAuth(firebase); //Firebase auth
+
+  const db = getDatabase(firebase); //Firebase database
 
   const onLogin = (email, password) => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((response) => {
         setUser({
           email: response.user['email'],
@@ -41,9 +42,7 @@ function App() {
   }
 
   const onLogout = () => {
-    firebase
-      .auth()
-      .signOut()
+    signOut(auth)
       .then(() => {
         setUser({ isAuthenticated: false });
       })
@@ -59,15 +58,13 @@ function App() {
 
   const createPost = (postTitle, postContent) => {
     const postSlug = postTitle.toLowerCase().split(" ").join("-");
-
-    const updatedPosts = [...posts,
-    {
-      id: Math.round(Math.random() * 9999),
+    const postListRef = ref(db, 'posts');
+    const newPostRef = push(postListRef);
+    set(newPostRef, {
       title: postTitle,
       content: postContent,
       slug: postSlug
-    }];
-    setPosts(updatedPosts);
+    });
     setFlashMessage('saved');
   }
 

@@ -4,11 +4,15 @@ import './index.css';
 import { useState } from "react";
 import UserContext from '../../context/userContext';
 import { useContext } from 'react';
+import firebase from '../../firebase';
+import { getDatabase, ref, push, set } from 'firebase/database';
 
 function ReadingList() {
 
   const [books, setBooks] = useState([]);
   const { user } = useContext(UserContext);
+
+  const db = getDatabase(firebase); //Firebase database
 
   const editBookById = (id, newTitle) => {
     const updatedBooks = books.map((book) => {
@@ -30,9 +34,12 @@ function ReadingList() {
   }
 
   const createBook = (title, preview) => {
-    const updatedBooks = [...books,
-    { id: Math.round(Math.random() * 9999), title, preview }];
-    setBooks(updatedBooks);
+    const bookListRef = ref(db, 'books');
+    const newBookRef = push(bookListRef);
+    set(newBookRef, {
+      title,
+      preview
+    });
   }
 
   return (
