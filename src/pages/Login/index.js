@@ -9,10 +9,9 @@ const Login = ({ error }) => {
     const [password, setPassword] = useState("");
     const isEnabled = email.length > 0 && password.length > 0;
 
-    const handleSubmit = (event) => {
+    const handleSubmit = event => {
         event.preventDefault();
         onLogin(email, password);
-
     }
 
     const handleEmailChange = (event) => {

@@ -42,6 +42,18 @@ function App() {
     });
   }, [setPosts]);
 
+  useEffect(() => {
+    const data = sessionStorage.getItem('user');
+    if (data) {
+      setUser(JSON.parse(data));
+    }
+  }, []);
+
+
+  useEffect(() => {
+    sessionStorage.setItem('user', JSON.stringify(user));
+  }, [user]);
+
   const onLogin = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((response) => {
