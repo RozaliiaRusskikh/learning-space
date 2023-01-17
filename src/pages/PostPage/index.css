@@ -1,0 +1,24 @@
+.post-page-container {
+   background-color: #dee6f1;
+   padding: 20px;
+   border-radius: 8px;
+   width: 60%;
+   position: relative;
+   margin: 0 auto;
+   color: black;
+   min-height: 400px;
+   box-shadow: 0px 0px 20px #727af2;
+}
+
+.post-page-container p {
+   color: black;
+}
+
+
+.content {
+   margin: 0 40px;
+}
+
+.post-page-container h2 {
+   text-align: center;
+}

@@ -15,7 +15,7 @@ function PostLink({ post, onDelete }) {
 
     return (
         <h3>
-            <Link to={`/progress-journal/${post.slug}`}>{post.title + " "}</Link>
+            <Link className='post-list' to={`/progress-journal/${post.slug}`}>{post.title + " "}</Link>
             {user.isAuthenticated && <FontAwesomeIcon className="remove" onClick={handleClick} icon={faRemove} />}
         </h3>
     )

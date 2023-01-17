@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { QuillDeltaToHtmlConverter } from "quill-delta-to-html";
 import NoPage from '../NoPage';
+import './index.css';
 
 function PostPage({ posts }) {
     const { postSlug } = useParams();
@@ -14,11 +15,11 @@ function PostPage({ posts }) {
     }
 
     return (
-        <div>
+        <div className="post-page-container">
             {post
                 ? (<article className="post-container">
                     <h2> {post.title}</h2 >
-                    <div dangerouslySetInnerHTML={{ __html: contentHTML }}></div>
+                    <div className='content' dangerouslySetInnerHTML={{ __html: contentHTML }}></div>
                 </article>)
                 : <NoPage />
             }
