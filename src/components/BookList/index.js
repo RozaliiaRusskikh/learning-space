@@ -4,7 +4,7 @@ function BookList({ books, onDelete, onEdit }) {
 
     const renderedBooks = books.map((book) => {
         return <Book onDelete={onDelete} onEdit={onEdit}
-            key={book.id} book={book} />
+            key={book.key} book={book} />
     })
 
     const showNoBooks = <p>Sorry! No books yet!</p>

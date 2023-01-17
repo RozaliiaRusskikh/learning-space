@@ -10,7 +10,7 @@ function PostLink({ post, onDelete }) {
     const { user } = useContext(UserContext);
 
     const handleClick = () => {
-        onDelete(post.id);
+        onDelete(post.key);
     }
 
     return (

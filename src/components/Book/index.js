@@ -14,7 +14,7 @@ function Book({ book, onDelete, onEdit }) {
     const { user } = useContext(UserContext);
 
     const handleDelete = () => {
-        onDelete(book.id);
+        onDelete(book.key);
     }
 
     const handleEdit = () => {

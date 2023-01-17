@@ -41,12 +41,15 @@ function BookCreate({ onCreate }) {
         if (!selectedFile) {
             return
         }
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+            setPreview(fileReader.result);
+        }
 
-        const objectUrl = URL.createObjectURL(selectedFile)
-        setPreview(objectUrl)
+        fileReader.readAsDataURL(selectedFile);
 
-        // free memory when ever this component is unmounted
-        return () => URL.revokeObjectURL(objectUrl)
+
+
     }, [selectedFile])
 
     return (

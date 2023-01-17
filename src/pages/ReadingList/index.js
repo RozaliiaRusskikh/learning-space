@@ -1,18 +1,34 @@
 import BookCreate from "../../components/BookCreate/index";
 import BookList from '../../components/BookList';
 import './index.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UserContext from '../../context/userContext';
 import { useContext } from 'react';
 import firebase from '../../firebase';
-import { getDatabase, ref, push, set } from 'firebase/database';
+import { getDatabase, ref, push, set, onValue, remove } from 'firebase/database';
 
 function ReadingList() {
 
   const [books, setBooks] = useState([]);
   const { user } = useContext(UserContext);
 
-  const db = getDatabase(firebase); //Firebase database
+
+  useEffect(() => {
+    const db = getDatabase(firebase); //Firebase database
+    const bookListRef = ref(db, 'books');
+    onValue(bookListRef, (snapshot) => {
+      const books = snapshot.val();
+      const newStateBooks = [];
+      for (let book in books) {
+        newStateBooks.push({
+          key: book,
+          title: books[book].title,
+          preview: books[book].preview,
+        });
+      }
+      setBooks(newStateBooks)
+    });
+  }, [setBooks]);
 
   const editBookById = (id, newTitle) => {
     const updatedBooks = books.map((book) => {
@@ -25,20 +41,23 @@ function ReadingList() {
     setBooks(updatedBooks);
   }
 
-  const deleteBookById = (id) => {
-    const updatedBooks = books.filter((book) => {
-      return book.id !== id;
-    })
+  const deleteBookById = (key) => {
 
-    setBooks(updatedBooks);
+    const db = getDatabase(firebase); //Firebase database
+
+    if (window.confirm('Delete this book?')) {
+      const bookRef = ref(db, 'books/' + key);
+      remove(bookRef);
+    }
   }
 
   const createBook = (title, preview) => {
+    const db = getDatabase(firebase); //Firebase database
     const bookListRef = ref(db, 'books');
     const newBookRef = push(bookListRef);
     set(newBookRef, {
-      title,
-      preview
+      title: title,
+      preview: preview
     });
   }
 

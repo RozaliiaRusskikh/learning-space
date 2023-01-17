@@ -8,11 +8,11 @@ import Home from './pages/Home';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import './App.css';
 import PostFormPage from './pages/PostFormPage';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import firebase from './firebase';
 import UserContext from './context/userContext';
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { getDatabase, ref, push, set } from 'firebase/database';
+import { getDatabase, ref, push, set, onValue, remove } from 'firebase/database';
 
 function App() {
 
@@ -23,7 +23,24 @@ function App() {
 
   const auth = getAuth(firebase); //Firebase auth
 
-  const db = getDatabase(firebase); //Firebase database
+
+  useEffect(() => {
+    const db = getDatabase(firebase); //Firebase database
+    const postListRef = ref(db, 'posts');
+    onValue(postListRef, (snapshot) => {
+      const posts = snapshot.val();
+      const newStatePosts = [];
+      for (let post in posts) {
+        newStatePosts.push({
+          key: post,
+          slug: posts[post].slug,
+          title: posts[post].title,
+          content: posts[post].content,
+        });
+      }
+      setPosts(newStatePosts)
+    });
+  }, [setPosts]);
 
   const onLogin = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
@@ -57,6 +74,7 @@ function App() {
   }
 
   const createPost = (postTitle, postContent) => {
+    const db = getDatabase(firebase); //Firebase database
     const postSlug = postTitle.toLowerCase().split(" ").join("-");
     const postListRef = ref(db, 'posts');
     const newPostRef = push(postListRef);
@@ -68,11 +86,12 @@ function App() {
     setFlashMessage('saved');
   }
 
-  const deletePost = (id) => {
+  const deletePost = (key) => {
+    const db = getDatabase(firebase); //Firebase database
+
     if (window.confirm('Delete this post?')) {
-      const updatedPosts = posts.filter((post) =>
-        post.id !== id);
-      setPosts(updatedPosts);
+      const postRef = ref(db, 'posts/' + key);
+      remove(postRef);
       setFlashMessage('deleted')
     }
   }
