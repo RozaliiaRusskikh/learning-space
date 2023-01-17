@@ -21,9 +21,9 @@ function Book({ book, onDelete, onEdit }) {
         setShowEdit(!showEdit);
     }
 
-    const handleSubmit = (id, newTitle) => {
+    const handleSubmit = (key, newTitle) => {
         setShowEdit(false);
-        onEdit(id, newTitle)
+        onEdit(key, newTitle, book.preview)
     }
 
     const iconStyle = {

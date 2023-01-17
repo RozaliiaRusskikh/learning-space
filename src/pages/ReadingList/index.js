@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import UserContext from '../../context/userContext';
 import { useContext } from 'react';
 import firebase from '../../firebase';
-import { getDatabase, ref, push, set, onValue, remove } from 'firebase/database';
+import { getDatabase, ref, push, set, onValue, remove, update } from 'firebase/database';
 
 function ReadingList() {
 
@@ -30,15 +30,13 @@ function ReadingList() {
     });
   }, [setBooks]);
 
-  const editBookById = (id, newTitle) => {
-    const updatedBooks = books.map((book) => {
-      if (book.id === id) {
-        return { ...book, title: newTitle }
-      }
-      return book;
-    })
-
-    setBooks(updatedBooks);
+  const editBookById = (key, newTitle, preview) => {
+    const db = getDatabase(firebase); //Firebase database
+    const bookRef = ref(db, 'books/' + key);
+    update(bookRef, {
+      title: newTitle,
+      preview: preview
+    });
   }
 
   const deleteBookById = (key) => {
