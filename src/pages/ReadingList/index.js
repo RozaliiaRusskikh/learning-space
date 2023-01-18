@@ -11,12 +11,16 @@ function ReadingList() {
 
   const [books, setBooks] = useState([]);
   const { user } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(true);
 
 
   useEffect(() => {
     const db = getDatabase(firebase); //Firebase database
     const bookListRef = ref(db, 'books');
     onValue(bookListRef, (snapshot) => {
+      if (!snapshot.exists()) {
+        setIsLoading(false);
+      }
       const books = snapshot.val();
       const newStateBooks = [];
       for (let book in books) {
@@ -26,7 +30,7 @@ function ReadingList() {
           preview: books[book].preview,
         });
       }
-      setBooks(newStateBooks)
+      setBooks(newStateBooks);
     });
   }, [setBooks]);
 
@@ -62,7 +66,7 @@ function ReadingList() {
   return (
     <div className="reading-list-container">
       <h1>My Learning Library </h1>
-      <BookList onEdit={editBookById} books={books} onDelete={deleteBookById} />
+      <BookList onEdit={editBookById} isLoading={isLoading} books={books} onDelete={deleteBookById} />
       {user.isAuthenticated && <BookCreate onCreate={createBook} />}
     </div>
   )

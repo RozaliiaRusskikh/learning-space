@@ -21,6 +21,7 @@ function App() {
   const [message, setMessage] = useState(null);
   const [user, setUser] = useState({});
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const auth = getAuth(firebase); //Firebase auth
 
@@ -29,6 +30,9 @@ function App() {
     const db = getDatabase(firebase); //Firebase database
     const postListRef = ref(db, 'posts');
     onValue(postListRef, (snapshot) => {
+      if (!snapshot.exists()) {
+        setIsLoading(false);
+      }
       const posts = snapshot.val();
       const newStatePosts = [];
       for (let post in posts) {
@@ -39,7 +43,7 @@ function App() {
           content: posts[post].content,
         });
       }
-      setPosts(newStatePosts)
+      setPosts(newStatePosts);
     });
   }, [setPosts]);
 
@@ -116,7 +120,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="reading-list" element={<ReadingList />} />
-            <Route path="progress-journal" element={<ProgressJournal onDelete={deletePost} message={message} posts={posts} />} />
+            <Route path="progress-journal" element={<ProgressJournal onDelete={deletePost} isLoading={isLoading} message={message} posts={posts} />} />
             <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} /> :
             <Route path="progress-journal/new" element={user.isAuthenticated ? <PostFormPage onCreate={createPost} /> :
               <p>Please <Link to='/login'>Log In</Link> to add a new post.</p>} />

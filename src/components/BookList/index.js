@@ -1,6 +1,8 @@
-import Book from "../Book"
+import Book from "../Book";
+import Spinner from '../Spinner/index';
 
-function BookList({ books, onDelete, onEdit }) {
+
+function BookList({ books, onDelete, onEdit, isLoading }) {
 
     const renderedBooks = books.map((book) => {
         return <Book onDelete={onDelete} onEdit={onEdit}
@@ -9,10 +11,19 @@ function BookList({ books, onDelete, onEdit }) {
 
     const showNoBooks = <p>Sorry! No books yet!</p>
 
+    if (!isLoading && books.length === 0) {
+        return showNoBooks;
+    }
 
-    return <>
-        {books.length !== 0 ? renderedBooks : showNoBooks}
-    </>
+    else if (isLoading && books.length === 0) {
+        return <Spinner />
+    }
+
+    else return (
+        <div>
+            {books.length !== 0 && renderedBooks}
+        </div>
+    )
 }
 
 export default BookList;

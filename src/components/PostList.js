@@ -1,6 +1,7 @@
 import PostLink from "./PostLink";
+import Spinner from '../components/Spinner/index';
 
-function PostList({ posts, onDelete }) {
+function PostList({ posts, onDelete, isLoading }) {
 
     const renderedPosts = posts.map((post) => {
         return <PostLink onDelete={onDelete} key={post.key} post={post} />
@@ -8,9 +9,17 @@ function PostList({ posts, onDelete }) {
 
     const showNoPosts = <p>Sorry! No posts yet!</p>
 
-    return (
+    if (!isLoading && posts.length === 0) {
+        return showNoPosts;
+    }
+
+    else if (isLoading && posts.length === 0) {
+        return <Spinner />
+    }
+
+    else return (
         <div>
-            {posts.length !== 0 ? renderedPosts : showNoPosts}
+            {posts.length !== 0 && renderedPosts}
         </div>
     )
 }
