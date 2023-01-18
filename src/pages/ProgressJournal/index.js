@@ -21,7 +21,6 @@ function ProgressJournal({ posts, message, onDelete }) {
             </article>
             {user.isAuthenticated && <Link to='/progress-journal/new' className='add-post-button'>Add a post
                 <FontAwesomeIcon icon={faAdd} color="#727af2" style={{ marginLeft: '.3rem' }}></FontAwesomeIcon></Link>}
-
         </div>
     )
 }

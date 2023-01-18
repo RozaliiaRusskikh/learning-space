@@ -13,6 +13,7 @@ import firebase from './firebase';
 import UserContext from './context/userContext';
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { getDatabase, ref, push, set, onValue, remove } from 'firebase/database';
+import { Link } from 'react-router-dom';
 
 function App() {
 
@@ -117,8 +118,9 @@ function App() {
             <Route path="reading-list" element={<ReadingList />} />
             <Route path="progress-journal" element={<ProgressJournal onDelete={deletePost} message={message} posts={posts} />} />
             <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} /> :
-            <Route path="progress-journal/new" element={user.isAuthenticated ? <PostFormPage onCreate={createPost} /> : <Navigate to='/login' />} />
-            <Route path="/login" element={!user.isAuthenticated ? <Login error={error} /> : <Navigate to='/' />} />
+            <Route path="progress-journal/new" element={user.isAuthenticated ? <PostFormPage onCreate={createPost} /> :
+              <p>Please <Link to='/login'>Log In</Link> to add a new post.</p>} />
+            <Route path="login" element={!user.isAuthenticated ? <Login error={error} /> : <Navigate to='/' />} />
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>
