@@ -9,6 +9,17 @@ const PostFormPage = ({ onCreate }) => {
     const [postContent, setPostContent] = useState("");
     const [saved, setSaved] = useState(false);
 
+    const modules = {
+        toolbar: [
+            [{ 'header': [1, 2, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            [{ 'color': [] }],
+            ['link', 'image'],
+            ['clean'] // remove formatting button
+        ]
+    }
+
     const handleTitleChange = (event) => {
         setPostTitle(event.target.value);
     }
@@ -51,7 +62,7 @@ const PostFormPage = ({ onCreate }) => {
                     Content
                 </label>
             </p>
-            <ReactQuill theme="snow" onChange={handleContentChange} placeholder='Write something...'></ReactQuill>
+            <ReactQuill theme="snow" onChange={handleContentChange} modules={modules} placeholder='Write something...' />
             <p>
                 <button type='submit'>Save</button>
                 <button type='button' className="cancel" onClick={handleCancel}>Cancel</button>
