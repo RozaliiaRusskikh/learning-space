@@ -38,7 +38,7 @@ const PostFormPage = ({ onCreate }) => {
 
     return (
         <form onSubmit={handlePostForm} className="post-form-container">
-            <h1>Add a new post:</h1>
+            <h1>Add a new note:</h1>
             <p>
                 <label htmlFor="form-title">
                     Title
@@ -51,7 +51,7 @@ const PostFormPage = ({ onCreate }) => {
                     Content
                 </label>
             </p>
-            <ReactQuill theme="snow" onChange={handleContentChange}></ReactQuill>
+            <ReactQuill theme="snow" onChange={handleContentChange} placeholder='Write something...'></ReactQuill>
             <p>
                 <button type='submit'>Save</button>
                 <button type='button' className="cancel" onClick={handleCancel}>Cancel</button>

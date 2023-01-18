@@ -1,5 +1,5 @@
 .post-page-container {
-   background-color: #dee6f1;
+   background-color: #939aff;
    padding: 20px;
    border-radius: 8px;
    width: 60%;
@@ -12,11 +12,6 @@
 
 .post-page-container p {
    color: black;
-}
-
-
-.content {
-   margin: 0 40px;
 }
 
 .post-page-container h2 {

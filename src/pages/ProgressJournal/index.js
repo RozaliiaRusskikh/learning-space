@@ -19,7 +19,7 @@ function ProgressJournal({ posts, message, onDelete, isLoading }) {
                 <h1>My Learning Diary</h1>
                 <PostList onDelete={onDelete} posts={posts} isLoading={isLoading} />
             </article>
-            {user.isAuthenticated && <Link to='/progress-journal/new' className='add-post-button'>Add a post
+            {user.isAuthenticated && <Link to='/progress-journal/new' className='add-post-button'>Add a note
                 <FontAwesomeIcon icon={faAdd} color="#727af2" style={{ marginLeft: '.3rem' }}></FontAwesomeIcon></Link>}
         </div>
     )

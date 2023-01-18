@@ -19,7 +19,7 @@ function PostPage({ posts }) {
             {post
                 ? (<article className="post-container">
                     <h2> {post.title}</h2 >
-                    <div className='content' dangerouslySetInnerHTML={{ __html: contentHTML }}></div>
+                    <div className='ql-editor' dangerouslySetInnerHTML={{ __html: contentHTML }}></div>
                 </article>)
                 : <NoPage />
             }
