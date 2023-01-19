@@ -25,5 +25,4 @@ function BookList({ books, onDelete, onEdit, isLoading }) {
         </div>
     )
 }
-
 export default BookList;
