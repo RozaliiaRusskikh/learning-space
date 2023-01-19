@@ -15,7 +15,7 @@ const PostFormPage = ({ onCreate }) => {
             ['bold', 'italic', 'underline', 'strike'],
             [{ 'list': 'ordered' }, { 'list': 'bullet' }],
             [{ 'color': [] }],
-            ['link', 'image'],
+            ['link', 'image', 'code-block'],
             ['clean'] // remove formatting button
         ]
     }
