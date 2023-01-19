@@ -1,11 +1,17 @@
 import { useParams } from "react-router-dom";
+import Spinner from '../../components/Spinner/index'
 import { QuillDeltaToHtmlConverter } from "quill-delta-to-html";
 import NoPage from '../NoPage';
 import './index.css';
 
-function PostPage({ posts }) {
+function PostPage({ posts, isLoading }) {
     const { postSlug } = useParams();
     let contentHTML = '';
+
+    if (isLoading && posts.length === 0) {
+        return <Spinner />
+    }
+
     const post = posts.find((post) =>
         post.slug === postSlug);
 
@@ -15,7 +21,7 @@ function PostPage({ posts }) {
     }
 
     return (
-        <div className="post-page-container">
+        <div>
             {post
                 ? (<article className="post-container">
                     <h2> {post.title}</h2 >
@@ -29,3 +35,4 @@ function PostPage({ posts }) {
 
 
 export default PostPage;
+

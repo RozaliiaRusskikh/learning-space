@@ -121,7 +121,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="reading-list" element={<ReadingList />} />
             <Route path="progress-journal" element={<ProgressJournal onDelete={deletePost} isLoading={isLoading} message={message} posts={posts} />} />
-            <Route path="progress-journal/:postSlug" element={<PostPage posts={posts} />} /> :
+            <Route path="progress-journal/:postSlug" element={<PostPage isLoading={isLoading} posts={posts} />} /> :
             <Route path="progress-journal/new" element={user.isAuthenticated ? <PostFormPage onCreate={createPost} /> :
               <p>Please <Link to='/login'>Log In</Link> to add a new post.</p>} />
             <Route path="login" element={!user.isAuthenticated ? <Login error={error} /> : <Navigate to='/' />} />

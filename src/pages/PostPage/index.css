@@ -1,4 +1,4 @@
-.post-page-container {
+.post-container {
    background-color: #939aff;
    padding: 20px;
    border-radius: 8px;
@@ -10,10 +10,10 @@
    box-shadow: 0px 0px 20px #727af2;
 }
 
-.post-page-container p {
+.post-container p {
    color: black;
 }
 
-.post-page-container h2 {
+.post-container h2 {
    text-align: center;
 }
