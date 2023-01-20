@@ -15,8 +15,8 @@ function ProgressJournal({ posts, message, onDelete, isLoading }) {
     return (
         <div>
             <article>
-                {message && <Message message={message} />}
                 <h1>My Learning Diary</h1>
+                {message && <Message message={message} item='Note'/>}
                 <PostList onDelete={onDelete} posts={posts} isLoading={isLoading} />
             </article>
             {user.isAuthenticated && <Link to='/progress-journal/new' className='add-post-button'>Add a note

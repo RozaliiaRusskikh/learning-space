@@ -5,7 +5,7 @@ import NoPage from './pages/NoPage';
 import ReadingList from './pages/ReadingList/index';
 import Layout from './components/Layout/index';
 import Home from './pages/Home';
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import './App.css';
 import PostFormPage from './pages/PostFormPage';
 import { useEffect, useState } from 'react';
@@ -13,7 +13,6 @@ import firebase from './firebase';
 import UserContext from './context/userContext';
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { getDatabase, ref, push, set, onValue, remove, update } from 'firebase/database';
-import { Link } from 'react-router-dom';
 import EditPostFormPage from './components/EditPostFormPage';
 
 
@@ -141,7 +140,8 @@ function App() {
             <Route path="progress-journal" element={<ProgressJournal onDelete={deletePost} isLoading={isLoading} message={message} posts={posts} />} />
             <Route path="progress-journal/:postSlug" element={<PostPage isLoading={isLoading} posts={posts} />} /> :
 
-            <Route path="progress-journal/new" element={user.isAuthenticated ? <PostFormPage onCreate={createPost}
+            <Route path="progress-journal/new" element={user.isAuthenticated ? <PostFormPage
+              onCreate={createPost} action='Add'
               post={{ key: 0, slug: "", title: "", content: "" }}
             /> :
               <p>Please <Link to='/login'>Log In</Link> to add a post.</p>} />

@@ -6,12 +6,14 @@ import UserContext from '../../context/userContext';
 import { useContext } from 'react';
 import firebase from '../../firebase';
 import { getDatabase, ref, push, set, onValue, remove, update } from 'firebase/database';
+import Message from '../../components/Message/index';
 
 function ReadingList() {
 
   const [books, setBooks] = useState([]);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
+  const [message, setMessage] = useState(null);
 
 
   useEffect(() => {
@@ -41,6 +43,7 @@ function ReadingList() {
       title: newTitle,
       preview: preview
     });
+    setFlashMessage('updated');
   }
 
   const deleteBookById = (key) => {
@@ -51,6 +54,7 @@ function ReadingList() {
       const bookRef = ref(db, 'books/' + key);
       remove(bookRef);
     }
+    setFlashMessage('deleted');
   }
 
   const createBook = (title, preview) => {
@@ -61,11 +65,20 @@ function ReadingList() {
       title: title,
       preview: preview
     });
+    setFlashMessage('saved');
+  }
+
+  const setFlashMessage = (message) => {
+    setMessage(message);
+    setTimeout(() => {
+      setMessage(null)
+    }, 1600)
   }
 
   return (
     <div className="reading-list-container">
       <h1>My Learning Library </h1>
+      {message && <Message message={message} item='Book' />}
       <BookList onEdit={editBookById} isLoading={isLoading} books={books} onDelete={deleteBookById} />
       {user.isAuthenticated && <BookCreate onCreate={createBook} />}
     </div>

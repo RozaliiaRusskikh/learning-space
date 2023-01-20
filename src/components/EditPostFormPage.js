@@ -11,7 +11,7 @@ function EditPostFormPage({ posts, updatePost }) {
     )
 
     if (post) {
-        return <PostFormPage post={post} updatePost={updatePost} />
+        return <PostFormPage post={post} updatePost={updatePost} action='Edit'/>
     }
 
     else {

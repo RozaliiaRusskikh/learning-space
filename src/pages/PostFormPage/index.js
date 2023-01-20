@@ -4,10 +4,11 @@ import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import { Navigate } from "react-router-dom";
 
-const PostFormPage = ({ post, onCreate, updatePost }) => {
+const PostFormPage = ({ post, onCreate, updatePost, action }) => {
     const [postTitle, setPostTitle] = useState(post.title);
     const [postContent, setPostContent] = useState(post.content);
     const [saved, setSaved] = useState(false);
+
 
     const modules = {
         toolbar: [
@@ -37,12 +38,19 @@ const PostFormPage = ({ post, onCreate, updatePost }) => {
         event.preventDefault();
         if (postTitle && postContent) {
             if (updatePost) {
-                updatePost(postTitle, postContent, post.key);
+                if (post.title === postTitle || post.content === postContent) {
+                    window.history.back();
+                }
+                else {
+                    updatePost(postTitle, postContent, post.key);
+                    window.history.back();
+                }
             }
             else {
                 onCreate(postTitle, postContent);
+                setSaved(true);
             }
-            setSaved(true);
+
         }
         else {
             alert("Title and content are required.")
@@ -55,7 +63,7 @@ const PostFormPage = ({ post, onCreate, updatePost }) => {
 
     return (
         <form onSubmit={handlePostForm} className="post-form-container">
-            <h1>Add a new note:</h1>
+            <h1>{action} a note:</h1>
             <p>
                 <label htmlFor="form-title">
                     Title

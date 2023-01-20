@@ -1,11 +1,11 @@
 import React from "react";
 import './index.css'
 
-const Message = ({ message }) => {
+const Message = ({ message, item }) => {
     const messages = {
-        saved: "Post has been saved!",
-        deleted: "Post has been deleted!",
-        updated: "Post has been updated!"
+        saved: `${item} has been saved!`,
+        deleted: `${item} has been deleted!`,
+        updated: `${item} has been updated!`
     }
 
     return (

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import UserContext from '../../context/userContext';
 import { useContext } from 'react';
+import { Navigate } from 'react-router-dom';
 
 function Book({ book, onDelete, onEdit }) {
 
@@ -23,7 +24,12 @@ function Book({ book, onDelete, onEdit }) {
 
     const handleSubmit = (key, newTitle) => {
         setShowEdit(false);
-        onEdit(key, newTitle, book.preview)
+        if (book.title === newTitle) {
+            <Navigate to='/reading-list' />
+        }
+        else {
+            onEdit(key, newTitle, book.preview)
+        }
     }
 
     const iconStyle = {
