@@ -13,3 +13,7 @@
 .post-list {
     color: #afb1d4;
 }
+
+.post-item {
+    margin: 25px 0;
+}

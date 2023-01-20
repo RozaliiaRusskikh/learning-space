@@ -16,6 +16,7 @@ const PostFormPage = ({ post, onCreate, updatePost, action }) => {
             ['bold', 'italic', 'underline', 'strike'],
             [{ 'list': 'ordered' }, { 'list': 'bullet' }],
             [{ 'color': [] }],
+            [{ 'align': [] }],
             ['link', 'image', 'code-block'],
             ['clean'] // remove formatting button
         ]
@@ -38,19 +39,13 @@ const PostFormPage = ({ post, onCreate, updatePost, action }) => {
         event.preventDefault();
         if (postTitle && postContent) {
             if (updatePost) {
-                if (post.title === postTitle || post.content === postContent) {
-                    window.history.back();
-                }
-                else {
-                    updatePost(postTitle, postContent, post.key);
-                    window.history.back();
-                }
+                updatePost(postTitle, postContent, post.key);
+                window.history.back();
             }
             else {
                 onCreate(postTitle, postContent);
                 setSaved(true);
             }
-
         }
         else {
             alert("Title and content are required.")

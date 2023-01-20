@@ -87,12 +87,11 @@ function App() {
     setMessage(message);
     setTimeout(() => {
       setMessage(null)
-    }, 1600)
+    }, 2000)
   }
 
   const getNewSlugFromTitle = (title) => {
-    return encodeURIComponent(
-      title.trim().toLowerCase().split(" ").join("-"));
+    return title.trim().toLowerCase().split(" ").join("-");
   }
 
   const createPost = (postTitle, postContent) => {

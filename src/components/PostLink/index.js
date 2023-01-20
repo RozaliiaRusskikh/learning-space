@@ -15,17 +15,20 @@ function PostLink({ post, onDelete }) {
     }
 
     return (
-        <h3>
-            <Link className='post-list' to={`/progress-journal/${post.slug}`}>{post.title + " "}</Link>
-            {user.isAuthenticated && (
-                <>
-                    <Link to={`/progress-journal/edit/${post.slug}`}>
-                        <FontAwesomeIcon className="edit" icon={faEdit} />
-                    </Link>
-                    {" "}
-                    <FontAwesomeIcon className="remove" onClick={handleClick} icon={faRemove} />
-                </>)}
-        </h3>
+        <ul>
+            <li className="post-item">
+                <Link className='post-list' to={`/progress-journal/${post.slug}`}>{post.title}</Link>
+                {user.isAuthenticated && (
+                    <>
+                        {" "}
+                        <Link to={`/progress-journal/edit/${post.slug}`}>
+                            <FontAwesomeIcon className="edit" icon={faEdit} />
+                        </Link>
+                        {" "}
+                        <FontAwesomeIcon className="remove" onClick={handleClick} icon={faRemove} />
+                    </>)}
+            </li>
+        </ul>
     )
 }
 
