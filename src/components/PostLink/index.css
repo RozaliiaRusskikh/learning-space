@@ -4,6 +4,12 @@
     color: #FF3F69;
 }
 
+.edit {
+    cursor: pointer;
+    font-size: 20px;
+    color: #939aff;
+}
+
 .post-list {
     color: #afb1d4;
 }

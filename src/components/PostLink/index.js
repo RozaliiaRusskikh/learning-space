@@ -19,7 +19,9 @@ function PostLink({ post, onDelete }) {
             <Link className='post-list' to={`/progress-journal/${post.slug}`}>{post.title + " "}</Link>
             {user.isAuthenticated && (
                 <>
-                    <FontAwesomeIcon className="edit" icon={faEdit} />
+                    <Link to={`/progress-journal/edit/${post.slug}`}>
+                        <FontAwesomeIcon className="edit" icon={faEdit} />
+                    </Link>
                     {" "}
                     <FontAwesomeIcon className="remove" onClick={handleClick} icon={faRemove} />
                 </>)}

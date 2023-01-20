@@ -4,9 +4,9 @@ import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import { Navigate } from "react-router-dom";
 
-const PostFormPage = ({ onCreate }) => {
-    const [postTitle, setPostTitle] = useState("");
-    const [postContent, setPostContent] = useState("");
+const PostFormPage = ({ post, onCreate, updatePost }) => {
+    const [postTitle, setPostTitle] = useState(post.title);
+    const [postContent, setPostContent] = useState(post.content);
     const [saved, setSaved] = useState(false);
 
     const modules = {
@@ -21,7 +21,7 @@ const PostFormPage = ({ onCreate }) => {
     }
 
     const handleTitleChange = (event) => {
-        setPostTitle(event.target.value);
+        setPostTitle(event.target.value)
     }
 
     const handleCancel = () => {
@@ -29,13 +29,19 @@ const PostFormPage = ({ onCreate }) => {
     }
 
     const handleContentChange = (postContent, delta, source, editor) => {
-        setPostContent(editor.getContents());
+        setPostContent(editor.getContents()
+        );
     }
 
     const handlePostForm = (event) => {
         event.preventDefault();
         if (postTitle && postContent) {
-            onCreate(postTitle, postContent);
+            if (updatePost) {
+                updatePost(postTitle, postContent, post.key);
+            }
+            else {
+                onCreate(postTitle, postContent);
+            }
             setSaved(true);
         }
         else {
@@ -62,7 +68,7 @@ const PostFormPage = ({ onCreate }) => {
                     Content
                 </label>
             </p>
-            <ReactQuill theme="snow" onChange={handleContentChange} modules={modules} placeholder='Write something...' />
+            <ReactQuill theme="snow" value={postContent} onChange={handleContentChange} modules={modules} placeholder='Write something...' />
             <p>
                 <button type='submit'>Save</button>
                 <button type='button' className="cancel" onClick={handleCancel}>Cancel</button>

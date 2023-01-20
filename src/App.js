@@ -12,8 +12,10 @@ import { useEffect, useState } from 'react';
 import firebase from './firebase';
 import UserContext from './context/userContext';
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { getDatabase, ref, push, set, onValue, remove } from 'firebase/database';
+import { getDatabase, ref, push, set, onValue, remove, update } from 'firebase/database';
 import { Link } from 'react-router-dom';
+import EditPostFormPage from './components/EditPostFormPage';
+
 
 function App() {
 
@@ -22,7 +24,6 @@ function App() {
   const [user, setUser] = useState({});
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
   const auth = getAuth(firebase); //Firebase auth
 
 
@@ -90,9 +91,14 @@ function App() {
     }, 1600)
   }
 
+  const getNewSlugFromTitle = (title) => {
+    return encodeURIComponent(
+      title.trim().toLowerCase().split(" ").join("-"));
+  }
+
   const createPost = (postTitle, postContent) => {
     const db = getDatabase(firebase); //Firebase database
-    const postSlug = postTitle.toLowerCase().split(" ").join("-");
+    const postSlug = getNewSlugFromTitle(postTitle);
     const postListRef = ref(db, 'posts');
     const newPostRef = push(postListRef);
     set(newPostRef, {
@@ -103,13 +109,25 @@ function App() {
     setFlashMessage('saved');
   }
 
+  const updatePost = (postTitle, postContent, key) => {
+    const db = getDatabase(firebase); //Firebase database
+    const postSlug = getNewSlugFromTitle(postTitle);
+    const postListRef = ref(db, 'posts/' + key);
+    update(postListRef, {
+      title: postTitle,
+      content: postContent,
+      slug: postSlug
+    })
+    setFlashMessage('updated');
+  }
+
   const deletePost = (key) => {
     const db = getDatabase(firebase); //Firebase database
 
     if (window.confirm('Delete this post?')) {
       const postRef = ref(db, 'posts/' + key);
       remove(postRef);
-      setFlashMessage('deleted')
+      setFlashMessage('deleted');
     }
   }
 
@@ -122,9 +140,19 @@ function App() {
             <Route path="reading-list" element={<ReadingList />} />
             <Route path="progress-journal" element={<ProgressJournal onDelete={deletePost} isLoading={isLoading} message={message} posts={posts} />} />
             <Route path="progress-journal/:postSlug" element={<PostPage isLoading={isLoading} posts={posts} />} /> :
-            <Route path="progress-journal/new" element={user.isAuthenticated ? <PostFormPage onCreate={createPost} /> :
-              <p>Please <Link to='/login'>Log In</Link> to add a new post.</p>} />
-            <Route path="login" element={!user.isAuthenticated ? <Login error={error} /> : <Navigate to='/' />} />
+
+            <Route path="progress-journal/new" element={user.isAuthenticated ? <PostFormPage onCreate={createPost}
+              post={{ key: 0, slug: "", title: "", content: "" }}
+            /> :
+              <p>Please <Link to='/login'>Log In</Link> to add a post.</p>} />
+
+            <Route path="progress-journal/edit/:postSlug" element={
+              user.isAuthenticated ? (
+                <EditPostFormPage posts={posts} updatePost={updatePost} />
+              ) : (
+                <p>Please <Link to='/login'>Log In</Link> to edit a post.</p>)} />
+
+            <Route path="login" element={!user.isAuthenticated ? <Login error={error} /> : <Navigate replace to='/' />} />
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>

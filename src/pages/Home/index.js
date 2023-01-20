@@ -1,4 +1,4 @@
-import Planet from '../../assets/images/planet.png'
+import Planet from '../../assets/images/planet1.png'
 import Star from '../../assets/images/star.png'
 import './index.css';
 
