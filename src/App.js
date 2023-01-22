@@ -104,7 +104,7 @@ function App() {
       content: postContent,
       slug: postSlug
     });
-    setFlashMessage('saved');
+    user.isAuthenticated && setFlashMessage('saved');
   }
 
   const updatePost = (postTitle, postContent, key) => {
@@ -116,6 +116,7 @@ function App() {
       content: postContent,
       slug: postSlug
     })
+
     setFlashMessage('updated');
   }
 
@@ -130,7 +131,7 @@ function App() {
     });
 
 
-    setFlashMessage('moved');
+    user.isAuthenticated && setFlashMessage('moved');
   }
 
   const deletePost = (key) => {
