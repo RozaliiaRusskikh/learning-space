@@ -119,6 +119,20 @@ function App() {
     setFlashMessage('updated');
   }
 
+  const reorderPosts = (reorderderedPosts) => {
+    const db = getDatabase(firebase);
+    const postListRef = ref(db, 'posts/');
+
+    remove(postListRef);
+
+    reorderderedPosts.forEach((item) => {
+      createPost(item.title, item.content);
+    });
+
+
+    setFlashMessage('moved');
+  }
+
   const deletePost = (key) => {
     const db = getDatabase(firebase); //Firebase database
 
@@ -131,13 +145,13 @@ function App() {
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ user, onLogin, onLogout }}>
+      <UserContext.Provider value={{ user, onLogin, onLogout, posts }}>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="reading-list" element={<ReadingList />} />
-            <Route path="progress-journal" element={<ProgressJournal onDelete={deletePost} isLoading={isLoading} message={message} posts={posts} />} />
-            <Route path="progress-journal/:postSlug" element={<PostPage isLoading={isLoading} posts={posts} />} /> :
+            <Route path="progress-journal" element={<ProgressJournal reorderPosts={reorderPosts} onDelete={deletePost} isLoading={isLoading} message={message} />} />
+            <Route path="progress-journal/:postSlug" element={<PostPage isLoading={isLoading} />} /> :
 
             <Route path="progress-journal/new" element={user.isAuthenticated ? <PostFormPage
               onCreate={createPost} action='Add'
@@ -147,7 +161,7 @@ function App() {
 
             <Route path="progress-journal/edit/:postSlug" element={
               user.isAuthenticated ? (
-                <EditPostFormPage posts={posts} updatePost={updatePost} />
+                <EditPostFormPage updatePost={updatePost} />
               ) : (
                 <p>Please <Link to='/login'>Log In</Link> to edit a post.</p>)} />
 

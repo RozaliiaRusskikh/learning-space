@@ -3,8 +3,13 @@ import Spinner from '../../components/Spinner/index'
 import { QuillDeltaToHtmlConverter } from "quill-delta-to-html";
 import NoPage from '../NoPage';
 import './index.css';
+import UserContext from '../../context/userContext'
+import { useContext } from 'react';
 
-function PostPage({ posts, isLoading }) {
+
+function PostPage({ isLoading }) {
+    const { posts } = useContext(UserContext);
+
     const { postSlug } = useParams();
     let contentHTML = '';
 

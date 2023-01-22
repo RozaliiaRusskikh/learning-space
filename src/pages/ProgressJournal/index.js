@@ -8,7 +8,7 @@ import Message from '../../components/Message/index';
 import { useContext } from 'react';
 import UserContext from '../../context/userContext';
 
-function ProgressJournal({ posts, message, onDelete, isLoading }) {
+function ProgressJournal({ message, onDelete, isLoading, reorderPosts }) {
 
     const { user } = useContext(UserContext);
 
@@ -16,8 +16,8 @@ function ProgressJournal({ posts, message, onDelete, isLoading }) {
         <div>
             <article>
                 <h1>My Learning Diary</h1>
-                {message && <Message message={message} item='Note'/>}
-                <PostList onDelete={onDelete} posts={posts} isLoading={isLoading} />
+                {message && <Message message={message} item='Note' />}
+                <PostList onDelete={onDelete} isLoading={isLoading} reorderPosts={reorderPosts} />
             </article>
             {user.isAuthenticated && <Link to='/progress-journal/new' className='add-post-button'>Add a note
                 <FontAwesomeIcon icon={faAdd} color="#727af2" style={{ marginLeft: '.3rem' }}></FontAwesomeIcon></Link>}
